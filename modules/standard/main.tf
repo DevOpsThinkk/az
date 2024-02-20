@@ -1,11 +1,11 @@
 terraform {
   required_providers {
-    azurecaf = {
-      source = "aztfmod/azurecaf"
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 2.26"
     }
   }
 }
-
 locals {
   resource_group   = var.resource_groups[try(var.settings.lz_key, var.settings.resource_group.lz_key, var.client_config.landingzone_key)][try(var.settings.resource_group.key, var.settings.resource_group_key)]
   storage_account  = var.storage_accounts[try(var.settings.lz_key, var.settings.storage_account.lz_key, var.client_config.landingzone_key)][try(var.settings.storage_account.key, var.settings.storage_account_key)]

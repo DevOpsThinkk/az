@@ -1,4 +1,4 @@
-resource "azurecaf_name" "laah" {
+resource "azurerm_name" "laah" {
   name          = var.settings.name
   resource_type = "azurerm_logic_app_action_http"
   prefixes      = var.global_settings.prefixes
@@ -10,7 +10,7 @@ resource "azurecaf_name" "laah" {
 # Last review :  AzureRM version 2.74.0
 # Ref : https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/logic_app_action_http
 resource "azurerm_logic_app_action_http" "laah" {
-  name         = azurecaf_name.laah.result
+  name         = azurerm_name.laah.result
   logic_app_id = var.logic_app_id
   method       = var.settings.method
   uri          = var.settings.uri

@@ -1,4 +1,4 @@
-resource "azurecaf_name" "la" {
+resource "azurerm_name" "la" {
   name          = var.settings.name
   resource_type = "azurerm_logic_app_workflow"
   prefixes      = var.global_settings.prefixes
@@ -10,7 +10,7 @@ resource "azurecaf_name" "la" {
 # Last review :  AzureRM version 2.74.0
 # Ref : https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/logic_app_workflow
 resource "azurerm_logic_app_workflow" "la" {
-  name                               = azurecaf_name.la.result
+  name                               = azurerm_name.la.result
   resource_group_name                = var.resource_group_name
   location                           = var.location
   integration_service_environment_id = try(var.settings.integration_service_environment_id, null)
