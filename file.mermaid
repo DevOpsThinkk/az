@@ -1,0 +1,30 @@
+graph TD
+    subgraph VNET
+        direction TB
+        subnet1[Subnet 1: App Service Subnet]
+        subnet2[Subnet 2: Logic App Private Endpoint Subnet]
+        subnet3[Subnet 3: Storage Account Private Endpoint Subnet]
+
+        subnet1 --> AppService[Azure App Service]
+        AppService --> LogicApp[Logic App]
+
+        LogicApp --> privateEndpoint1[Private Endpoint 1: Logic App to Storage]
+        subnet2 --> privateEndpoint1
+
+        StorageAccount[Encrypted Storage Account]
+        StorageAccount --> privateEndpoint2[Private Endpoint 2: Storage Private Endpoint 1]
+        StorageAccount --> privateEndpoint3[Private Endpoint 3: Storage Private Endpoint 2]
+        StorageAccount --> privateEndpoint4[Private Endpoint 4: Storage Private Endpoint 3]
+        StorageAccount --> privateEndpoint5[Private Endpoint 5: Storage Private Endpoint 4]
+        subnet3 --> privateEndpoint2
+        subnet3 --> privateEndpoint3
+        subnet3 --> privateEndpoint4
+        subnet3 --> privateEndpoint5
+    end
+
+    style subnet1 fill:#f9f,stroke:#333,stroke-width:2px;
+    style subnet2 fill:#bbf,stroke:#333,stroke-width:2px;
+    style subnet3 fill:#ff9,stroke:#333,stroke-width:2px;
+    style AppService fill:#88b,stroke:#333,stroke-width:2px;
+    style LogicApp fill:#5a5,stroke:#333,stroke-width:2px;
+    style StorageAccount fill:#ff9999,stroke:#333,stroke-width:2px;
