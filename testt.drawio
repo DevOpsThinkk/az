@@ -1,0 +1,47 @@
+# Diagram Script for Azure Architecture
+
+## Shapes and Layout
+
+# Main VNET box
+rect VNET "Virtual Network (VNET)" at (300, 300) width 900 height 600 white
+
+# Subnets within VNET
+rect Subnet1 "Subnet 1: App Service Subnet" at (350, 350) width 250 height 200 lightblue
+rect Subnet2 "Subnet 2: Logic App Private Endpoint Subnet" at (650, 350) width 250 height 200 lightgreen
+rect Subnet3 "Subnet 3: Storage Account Private Endpoint Subnet" at (950, 350) width 250 height 200 lightyellow
+
+# Azure App Service in Subnet1
+rect AppService "Azure App Service" at (425, 400) width 100 height 50 lightblue
+
+# Logic App in Subnet2
+rect LogicApp "Logic App" at (725, 400) width 100 height 50 lightgreen
+
+# Private Endpoint for Logic App in Subnet2
+rect PrivateEndpointLogicApp "Private Endpoint" at (725, 475) width 100 height 50 lightgreen
+
+# Storage Account in Subnet3
+rect StorageAccount "Encrypted Storage Account" at (1050, 400) width 100 height 50 lightyellow
+
+# Private Endpoints for Storage Account in Subnet3
+rect PrivateEndpointStorage1 "Private Endpoint 1" at (1050, 475) width 100 height 50 lightyellow
+rect PrivateEndpointStorage2 "Private Endpoint 2" at (1050, 550) width 100 height 50 lightyellow
+rect PrivateEndpointStorage3 "Private Endpoint 3" at (1050, 625) width 100 height 50 lightyellow
+rect PrivateEndpointStorage4 "Private Endpoint 4" at (1050, 700) width 100 height 50 lightyellow
+
+## Connections between shapes
+
+# Connection from Azure App Service to Logic App
+line (AppService) (LogicApp)
+
+# Connection from Logic App to Private Endpoint
+line (LogicApp) (PrivateEndpointLogicApp)
+
+# Connections from Private Endpoint (Logic App) to Storage Account
+line (PrivateEndpointLogicApp) (PrivateEndpointStorage1)
+
+# Connections from Storage Account to its Private Endpoints
+line (StorageAccount) (PrivateEndpointStorage1)
+line (StorageAccount) (PrivateEndpointStorage2)
+line (StorageAccount) (PrivateEndpointStorage3)
+line (StorageAccount) (PrivateEndpointStorage4)
+
